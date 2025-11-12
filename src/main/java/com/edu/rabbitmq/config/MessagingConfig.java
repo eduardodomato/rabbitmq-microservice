@@ -32,16 +32,13 @@ public class MessagingConfig {
 
     @Bean
     public MessageConverter converter(){
-
         return new Jackson2JsonMessageConverter();
-
     }
 
-    //Check if I can do field injection for the converter
     @Bean
-    public AmqpTemplate template(ConnectionFactory connectionFactory){
+    public AmqpTemplate template(ConnectionFactory connectionFactory, MessageConverter messageConverter){
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(converter());
+        rabbitTemplate.setMessageConverter(messageConverter);
         return rabbitTemplate;
     }
 }
