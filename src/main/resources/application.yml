@@ -5,13 +5,18 @@ spring:
   application:
     name: rabbitmq-microservices
   datasource:
-    url: jdbc:h2:mem:rabbit-db
+    url: jdbc:h2:file:./data/rabbit-db
     driverClassName: org.h2.Driver
+    username: sa
+    password:
   h2:
     console:
-      enable: true
+      enabled: true
       path: /h2-console
   jpa:
     hibernate:
       ddl-auto: update
-      show-sql: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

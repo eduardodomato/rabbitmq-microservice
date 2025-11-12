@@ -22,7 +22,8 @@ public class OrderMapper {
 
     public Order mapDtoToOrder(OrderDTO orderDTO){
         Order order = new Order();
-        order.setId(UUID.fromString(orderDTO.getOrderId()));
+        // Don't set ID manually - let Hibernate generate it via @GeneratedValue
+        // If orderId exists in DTO and we need to preserve it, we can set it after entity is persisted
         order.setName(orderDTO.getName());
         order.setQty(orderDTO.getQty());
         order.setPrice(orderDTO.getPrice());
